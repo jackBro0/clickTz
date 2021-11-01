@@ -74,7 +74,7 @@ class AuthController extends Controller
                 ]
             );
         } else {
-            return $this->responseFail(401);
+            return $this->unauthorized();
         }
     }
 
@@ -82,5 +82,10 @@ class AuthController extends Controller
     public function userInfo($id)
     {
         return User::findOrfail($id);
+    }
+
+    public function unauthorized()
+    {
+        return $this->responseFail(401, 'Unauthorized');
     }
 }

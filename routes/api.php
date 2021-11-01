@@ -19,6 +19,8 @@ use \App\Http\Controllers\ProductController;
 Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::post('register', [AuthController::class, 'register'])->name('register');
 
+//Define unauthorized error
+Route::get('unauthorized', [AuthController::class, 'unauthorized'])->name('unauthorized');
 
 Route::middleware('auth:api')->group(function () {
     Route::get('user/{id}', [AuthController::class, 'userInfo'])->name('user.info')->middleware('scope:admin');
