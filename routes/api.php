@@ -22,6 +22,6 @@ Route::post('register', [AuthController::class, 'register'])->name('register');
 
 Route::middleware('auth:api')->group(function () {
     Route::get('user/{id}', [AuthController::class, 'userInfo'])->name('user.info')->middleware('scope:admin');
-    Route::resource('category', CategoryController::class);
-    Route::resource('product', ProductController::class);
+    Route::resource('category', CategoryController::class)->middleware('scope:admin');
+    Route::resource('product', ProductController::class)->middleware('scopes:customer');
 });
